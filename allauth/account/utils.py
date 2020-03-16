@@ -444,8 +444,7 @@ def url_str_to_user_pk(s):
     if issubclass(type(pk_field), models.UUIDField):
         return pk_field.to_python(s)
     try:
-        pk_field.to_python('a')
-        pk = s
+        pk = pk_field.to_python(s)
     except ValidationError:
         pk = base36_to_int(s)
     return pk
